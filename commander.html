@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaimae Elhrichi | Commander</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260707-11" />
+  </head>
+  <body data-page="commission">
+    <header class="site-header dark" data-reveal>
+      <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>ch.elhrichi_art</small></a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="apropos.html">A propos</a>
+        <a class="active" href="commander.html">Commander</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+        <span class="theme-toggle-mark" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+    </header>
+
+    <main class="page-main">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Commande personnalisee</p>
+        <h1>Imaginer votre tableau</h1>
+        <p>
+          Une oeuvre peut partir d'une photo, d'une couleur, d'un animal, d'un souvenir
+          ou d'une atmosphere. Decrivez votre idee et Chaimae vous repondra pour affiner le projet.
+        </p>
+      </section>
+
+      <section class="commission-layout">
+        <aside class="commission-aside about-rotator" data-about-rotator data-reveal>
+          <img src="CHAMASITE/oeuvre-10.jpeg" alt="Tableau calligraphique de Chaimae Elhrichi" />
+          <span class="about-art-caption">Mourra wa Rahma</span>
+          <p>Chaque commande est discutee avant realisation : format, budget, delai, couleurs et intention.</p>
+        </aside>
+
+        <form class="commission-form" id="commissionForm" data-reveal>
+          <label>Nom<input name="name" type="text" autocomplete="name" required /></label>
+          <label>Contact<input name="contact" type="text" autocomplete="email" placeholder="Email, telephone ou Instagram" required /></label>
+          <label>Type de tableau
+            <select name="type">
+              <option>Portrait</option>
+              <option>Animalier</option>
+              <option>Paysage</option>
+              <option>Calligraphie / symbolique</option>
+              <option>Commande personnalisee</option>
+            </select>
+          </label>
+          <label>Tableau a commander<select name="artwork" id="artworkSelect"><option value="Commande personnalisee">Commande personnalisee</option></select></label>
+          <label>Taille souhaitee<input name="size" type="text" placeholder="Ex. 60 x 80 cm" /></label>
+          <label>Budget approximatif<input name="budget" type="text" placeholder="Ex. 1200 MAD" /></label>
+          <label>Image de reference<input name="reference" type="file" accept="image/*" /></label>
+          <label class="full">Description du besoin
+            <textarea name="description" rows="7" placeholder="Sujet, couleurs, ambiance, piece, occasion..." required></textarea>
+          </label>
+          <div class="form-actions full">
+            <a class="button primary" id="quickWhatsappLink" target="_blank" rel="noreferrer">Commander ce tableau sur WhatsApp</a>
+            <button class="button ghost" type="submit">Envoyer le formulaire sur WhatsApp</button>
+            <a class="button ghost" id="emailLink" href="https://mail.google.com/mail/?view=cm&fs=1&to=elhrichichaimae04%40gmail.com&su=Commande%20de%20tableau%20-%20Chaimae%20Elhrichi&body=Bonjour%20Chaimae%2C%0D%0A%0D%0AJe%20souhaite%20commander%20un%20tableau.%0D%0A%0D%0ANom%20%3A%20%0D%0AContact%20%3A%20%0D%0ATableau%20%3A%20%0D%0ADescription%20%3A%20%0D%0A" target="_blank" rel="noreferrer">Envoyer par email</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Une idee, une photo, une emotion : le tableau commence ici.</p>
+      <a href="galerie.html">Revoir la galerie</a>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js?v=20260707-14"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

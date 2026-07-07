@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaimae Elhrichi | Galerie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260707-11" />
+  </head>
+  <body data-page="gallery">
+    <header class="site-header dark" data-reveal>
+      <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>ch.elhrichi_art</small></a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a class="active" href="galerie.html">Galerie</a>
+        <a href="apropos.html">A propos</a>
+        <a href="commander.html">Commander</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+        <span class="theme-toggle-mark" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+    </header>
+
+    <main class="page-main">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Exposition</p>
+        <h1>Galerie des oeuvres</h1>
+        <p>
+          Cliquez sur une oeuvre pour l'ouvrir en grand, decouvrir son titre artistique
+          et demander une piece similaire ou une commande personnalisee.
+        </p>
+      </section>
+
+      <section class="gallery-section">
+        <div class="filters" aria-label="Filtrer la galerie" data-reveal>
+          <button class="filter active" type="button" data-filter="all">Tout</button>
+          <button class="filter" type="button" data-filter="portrait">Portraits</button>
+          <button class="filter" type="button" data-filter="animalier">Animalier</button>
+          <button class="filter" type="button" data-filter="paysage">Paysages</button>
+          <button class="filter" type="button" data-filter="imaginaire">Imaginaire</button>
+          <button class="filter" type="button" data-filter="commande">Commandes</button>
+        </div>
+        <div class="art-grid" id="artGrid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Details de l'oeuvre">
+      <button class="close-lightbox" type="button" aria-label="Fermer">&times;</button>
+      <div class="lightbox-layout">
+        <img id="lightboxImage" alt="" />
+        <div class="lightbox-copy">
+          <p class="eyebrow" id="lightboxCategory"></p>
+          <h2 id="lightboxTitle"></h2>
+          <p id="lightboxNote" class="art-note"></p>
+          <dl>
+            <div><dt>Technique</dt><dd id="lightboxTechnique"></dd></div>
+            <div><dt>Format</dt><dd id="lightboxSize"></dd></div>
+            <div><dt>Annee</dt><dd id="lightboxYear"></dd></div>
+            <div><dt>Disponibilite</dt><dd id="lightboxPrice"></dd></div>
+          </dl>
+          <a class="button primary" id="lightboxWhatsapp" target="_blank" rel="noreferrer">Demander cette oeuvre</a>
+        </div>
+      </div>
+    </dialog>
+
+    <footer class="footer">
+      <p>Chaque tableau est unique.</p>
+      <a href="commander.html">Commander une oeuvre</a>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js?v=20260707-14"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

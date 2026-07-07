@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaimae Elhrichi | Connexion artiste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260707-11" />
+  </head>
+  <body data-page="admin-login">
+    <header class="site-header dark" data-reveal>
+      <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>Espace prive</small></a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="commander.html">Commander</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+        <span class="theme-toggle-mark" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+    </header>
+
+    <main class="page-main admin-page">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Administration</p>
+        <h1>Connexion artiste</h1>
+        <p>Entrez le mot de passe pour acceder a l'espace prive de gestion des tableaux.</p>
+      </section>
+
+      <section class="admin-login" id="adminLogin" data-reveal>
+        <label>Mot de passe
+          <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Mot de passe artiste" autofocus />
+        </label>
+        <button class="button primary" id="adminLoginButton" type="button">Entrer dans l'espace prive</button>
+        <p class="admin-message" id="adminLoginMessage" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Acces reserve a l'artiste.</p>
+      <a href="index.html">Retour au site</a>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js?v=20260707-14"></script>
+    <script src="admin.js?v=20260707-7"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+

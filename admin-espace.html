@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaimae Elhrichi | Espace prive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260707-11" />
+  </head>
+  <body data-page="admin-private">
+    <header class="site-header dark" data-reveal>
+      <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>Espace prive</small></a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="commander.html">Commander</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+        <span class="theme-toggle-mark" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+    </header>
+
+    <main class="page-main admin-page">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Espace prive</p>
+        <h1>Gestion des tableaux</h1>
+        <p>Ajoutez un nouveau tableau, consultez les ajouts et supprimez une oeuvre si necessaire.</p>
+      </section>
+
+      <section class="admin-panel" id="adminPanel">
+        <form class="commission-form admin-form" id="adminArtworkForm">
+          <label>Titre du tableau<input name="title" type="text" required placeholder="Ex. Le Roi du Silence" /></label>
+          <label>Categorie
+            <select name="category" required>
+              <option value="portrait">Portrait</option>
+              <option value="animalier">Animalier</option>
+              <option value="paysage">Paysage</option>
+              <option value="imaginaire">Imaginaire</option>
+              <option value="commande">Commande personnalisee</option>
+            </select>
+          </label>
+          <label>Image du tableau<input name="image" type="file" accept="image/*" required /></label>
+          <label>Technique<input name="technique" type="text" placeholder="Acrylique sur toile" /></label>
+          <label>Format<input name="size" type="text" placeholder="Format vertical, 60 x 80 cm..." /></label>
+          <label>Annee<input name="year" type="text" value="2026" /></label>
+          <label>Disponibilite / prix<input name="price" type="text" value="Sur demande" /></label>
+          <label class="full">Description
+            <textarea name="note" rows="5" placeholder="Courte description du tableau..."></textarea>
+          </label>
+          <div class="form-actions full">
+            <button class="button primary" type="submit">Ajouter le tableau</button>
+            <button class="button ghost" id="adminLogoutButton" type="button">Se deconnecter</button>
+          </div>
+        </form>
+
+        <section class="admin-list-section">
+          <p class="eyebrow">Tableaux ajoutes</p>
+          <div class="admin-art-list" id="adminArtList"></div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Espace prive de Chaimae Elhrichi.</p>
+      <a href="galerie.html">Voir la galerie</a>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js?v=20260707-14"></script>
+    <script src="admin.js?v=20260707-7"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
