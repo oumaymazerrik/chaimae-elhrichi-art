@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260707-15" />
+    <link rel="stylesheet" href="styles.css?v=20260707-18" />
   </head>
   <body data-page="home">
     <header class="site-header" data-reveal>
@@ -21,6 +21,7 @@
         <a href="galerie.html">Galerie</a>
         <a href="apropos.html">A propos</a>
         <a href="commander.html">Commander</a>
+        <a class="cart-nav-link" href="panier.html">Panier <span class="cart-count" data-cart-count>0</span></a>
         <a href="contact.html">Contact</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
@@ -61,6 +62,26 @@
         </div>
       </section>
 
+      <section class="section collection-band" data-reveal>
+        <div class="section-heading">
+          <p class="eyebrow">Collections</p>
+          <h2>Un atelier qui change de lumiere selon le sujet.</h2>
+        </div>
+        <div class="collection-grid">
+          <a class="collection-card portrait-card" href="galerie.html">
+            <span>Portraits sensibles</span>
+            <small>Regards, figures et presences humaines.</small>
+          </a>
+          <a class="collection-card nature-card" href="galerie.html">
+            <span>Nature et animaux</span>
+            <small>Force, douceur, mouvement et symboles vivants.</small>
+          </a>
+          <a class="collection-card dream-card" href="galerie.html">
+            <span>Reves et commandes</span>
+            <small>Pieces imaginees autour d'une histoire personnelle.</small>
+          </a>
+        </div>
+      </section>
       <section class="section split-feature">
         <div class="feature-copy" data-reveal>
           <p class="eyebrow">Selection</p>
@@ -73,7 +94,19 @@
         </div>
         <div class="featured-strip" data-featured data-reveal></div>
       </section>
-    </main>
+
+      <section class="section process-section" data-reveal>
+        <div class="section-heading compact">
+          <p class="eyebrow">Commande</p>
+          <h2>Du premier message au tableau final.</h2>
+        </div>
+        <div class="process-grid">
+          <article><span>01</span><strong>Idee</strong><p>Vous partagez une photo, une couleur, une ambiance ou une emotion.</p></article>
+          <article><span>02</span><strong>Direction</strong><p>Chaimae propose le format, la composition et les details importants.</p></article>
+          <article><span>03</span><strong>Peinture</strong><p>L'oeuvre prend forme avec un suivi simple jusqu'a la finition.</p></article>
+          <article><span>04</span><strong>Remise</strong><p>Le tableau est pret a rejoindre votre interieur ou a etre offert.</p></article>
+        </div>
+      </section>    </main>
 
     <footer class="footer">
       <p>Chaimae Elhrichi | ch.elhrichi_art</p>
@@ -81,7 +114,7 @@
     </footer>
 
     <script src="data.js?v=20260707-16"></script>
-    <script src="script.js?v=20260707-15"></script>
+    <script src="script.js?v=20260707-18"></script>
   </body>
 </html>
 

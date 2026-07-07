@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaimae Elhrichi | Panier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260707-18" />
+  </head>
+  <body data-page="cart">
+    <header class="site-header dark" data-reveal>
+      <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>ch.elhrichi_art</small></a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="apropos.html">A propos</a>
+        <a href="commander.html">Commander</a>
+        <a class="cart-nav-link active" href="panier.html">Panier <span class="cart-count" data-cart-count>0</span></a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+        <span class="theme-toggle-mark" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+    </header>
+
+    <main class="page-main cart-page">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Panier</p>
+        <h1>Vos oeuvres selectionnees</h1>
+        <p>
+          Ajoutez vos tableaux preferes, puis validez la commande. Chaimae confirmera le prix,
+          la disponibilite et le paiement securise avant la realisation ou l'envoi.
+        </p>
+      </section>
+
+      <section class="cart-layout" data-reveal>
+        <div class="cart-items" id="cartItems" aria-live="polite"></div>
+        <aside class="cart-summary">
+          <p class="eyebrow">Validation</p>
+          <h2>Finaliser la demande</h2>
+          <p class="cart-summary-text" id="cartSummaryText">Votre panier est vide.</p>
+          <div class="cart-actions">
+            <a class="button primary" id="cartWhatsapp" target="_blank" rel="noreferrer">Envoyer la commande sur WhatsApp</a>
+            <a class="button ghost disabled" id="securePaymentLink" aria-disabled="true">Paiement securise bientot disponible</a>
+            <button class="button ghost" type="button" id="clearCartButton">Vider le panier</button>
+          </div>
+          <p class="payment-note">
+            Pour activer le paiement par carte directement sur le site, il faudra connecter un compte Stripe,
+            PayPal, CMI ou Payzone et ajouter les prix exacts des oeuvres.
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Panier artistique de Chaimae Elhrichi.</p>
+      <a href="galerie.html">Continuer la visite</a>
+    </footer>
+
+    <script src="data.js?v=20260707-16"></script>
+    <script src="script.js?v=20260707-18"></script>
+  </body>
+</html>

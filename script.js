@@ -1,6 +1,7 @@
 const whatsappNumber = "212650732531";
 const emailAddress = "elhrichichaimae04@gmail.com";
 const storedArtworksKey = "chaimae-extra-artworks";
+const cartStorageKey = "chaimae-cart";
 
 function getStoredArtworks() {
   try {
@@ -20,6 +21,125 @@ function getAllArtworks() {
 }
 
 
+
+function getCartItems() {
+  try {
+    return JSON.parse(localStorage.getItem(cartStorageKey) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveCartItems(items) {
+  localStorage.setItem(cartStorageKey, JSON.stringify(items));
+  updateCartCount();
+}
+
+function artworkId(art) {
+  return art.image || art.title;
+}
+
+function addToCart(art) {
+  const items = getCartItems();
+  const id = artworkId(art);
+  if (!items.some((item) => item.id === id)) {
+    items.push({
+      id,
+      title: art.title,
+      image: art.image,
+      price: art.price,
+      size: art.size,
+      category: categoryLabel[art.category] || art.category,
+    });
+    saveCartItems(items);
+  }
+  showCartNotice(`${art.title} est ajoute au panier.`);
+}
+
+function removeFromCart(id) {
+  saveCartItems(getCartItems().filter((item) => item.id !== id));
+  renderCartPage();
+}
+
+function updateCartCount() {
+  const count = getCartItems().length;
+  document.querySelectorAll("[data-cart-count]").forEach((target) => {
+    target.textContent = String(count);
+    target.hidden = count === 0;
+  });
+}
+
+function cartMessage(items) {
+  const lines = items.map((item, index) => `${index + 1}. ${item.title} - ${item.price} - ${item.size}`);
+  return [
+    "Bonjour Chaimae, je souhaite valider cette commande :",
+    ...lines,
+    "",
+    "Merci de me confirmer la disponibilite, le prix final et le mode de paiement securise.",
+  ].join("\n");
+}
+
+function showCartNotice(message) {
+  let notice = document.querySelector(".cart-toast");
+  if (!notice) {
+    notice = document.createElement("div");
+    notice.className = "cart-toast";
+    document.body.appendChild(notice);
+  }
+  notice.textContent = message;
+  notice.classList.add("is-visible");
+  window.setTimeout(() => notice.classList.remove("is-visible"), 2200);
+}
+
+function renderCartPage() {
+  const target = document.querySelector("#cartItems");
+  const summary = document.querySelector("#cartSummaryText");
+  const whatsapp = document.querySelector("#cartWhatsapp");
+  if (!target || !summary || !whatsapp) return;
+
+  const items = getCartItems();
+  if (!items.length) {
+    target.innerHTML = `<div class="empty-cart"><p>Votre panier est vide.</p><a class="button primary" href="galerie.html">Choisir une oeuvre</a></div>`;
+    summary.textContent = "Ajoutez une oeuvre depuis la galerie pour preparer une commande.";
+    whatsapp.href = whatsappUrl("Bonjour Chaimae, je souhaite avoir des informations sur vos tableaux.");
+    return;
+  }
+
+  target.innerHTML = items
+    .map(
+      (item) => `
+        <article class="cart-item">
+          <img src="${item.image}" alt="${item.title}" />
+          <div>
+            <span class="eyebrow">${item.category}</span>
+            <h2>${item.title}</h2>
+            <p>${item.size} | ${item.price}</p>
+          </div>
+          <button class="button ghost" type="button" data-remove-cart="${item.id}">Retirer</button>
+        </article>
+      `
+    )
+    .join("");
+
+  summary.textContent = `${items.length} oeuvre${items.length > 1 ? "s" : ""} dans le panier. Prix final a confirmer avec l'artiste.`;
+  whatsapp.href = whatsappUrl(cartMessage(items));
+}
+
+function setupCart() {
+  updateCartCount();
+  renderCartPage();
+
+  document.querySelector("#cartItems")?.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-cart]");
+    if (!button) return;
+    removeFromCart(button.dataset.removeCart);
+  });
+
+  document.querySelector("#clearCartButton")?.addEventListener("click", () => {
+    saveCartItems([]);
+    renderCartPage();
+  });
+}
 function emailComposeUrl(subject, body) {
   return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
@@ -57,7 +177,7 @@ function renderFeatured() {
   const allArtworks = getAllArtworks();
   if (allArtworks.length < 3) return;
 
-  const featured = [allArtworks[0], allArtworks[6] || allArtworks[1], allArtworks[14] || allArtworks[2]].filter(Boolean);
+  const featured = [allArtworks[0], allArtworks[4] || allArtworks[1], allArtworks[10] || allArtworks[2]].filter(Boolean);
   target.innerHTML = featured
     .map(
       (art) => `
@@ -82,13 +202,14 @@ function renderGallery(filter = "all") {
         <button class="art-card" type="button" data-index="${allArtworks.indexOf(art)}" data-reveal style="transition-delay: ${Math.min(index * 35, 260)}ms">
           <span class="art-frame">
             <img src="${art.image}" alt="${art.title}" loading="lazy" />
+            <span class="art-badge">${art.price}</span>
           </span>
           <span class="art-meta">
             <span>
               <span class="art-title">${art.title}</span>
               <span class="art-category">${categoryLabel[art.category] || art.category}</span>
             </span>
-            <span class="art-price">${art.price}</span>
+            <span class="art-price">Voir</span>
           </span>
         </button>
       `
@@ -110,6 +231,8 @@ function openLightbox(art) {
   document.querySelector("#lightboxSize").textContent = art.size;
   document.querySelector("#lightboxYear").textContent = art.year;
   document.querySelector("#lightboxPrice").textContent = art.price;
+  const addCartButton = document.querySelector("#lightboxAddCart");
+  if (addCartButton) addCartButton.onclick = () => addToCart(art);
   document.querySelector("#lightboxWhatsapp").href = whatsappUrl(
     `Bonjour Chaimae, je suis interesse(e) par l'oeuvre "${art.title}".`
   );
@@ -242,6 +365,7 @@ renderFeatured();
 setupAboutRotator();
 setupGallery();
 setupForm();
+setupCart();
 observeReveals();
 function setupTheme() {
   const toggle = document.querySelector(".theme-toggle");
