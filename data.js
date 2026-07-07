@@ -23,7 +23,7 @@ const artworks = [
     title: "Deux Coeurs au Soleil",
     category: "animalier",
     image: "CHAMASITE/oeuvre-03.jpeg",
-    technique: "Acrylique texturée sur toile",
+    technique: "Acrylique texturee sur toile",
     size: "Petit format",
     year: "2026",
     price: "Sur commande",
@@ -120,26 +120,6 @@ const artworks = [
     note: "Un navire de face, porte par une mer vive sous un ciel flamboyant.",
   },
   {
-    title: "Proue au Soleil",
-    category: "paysage",
-    image: "CHAMASITE/oeuvre-13.jpeg",
-    technique: "Acrylique sur toile encadree",
-    size: "Format vertical",
-    year: "2026",
-    price: "Sur demande",
-    note: "Une variation rapprochee du bateau, plus directe, presque cinematographique.",
-  },
-  {
-    title: "Duo d'Or",
-    category: "animalier",
-    image: "CHAMASITE/oeuvre-14.jpeg",
-    technique: "Acrylique texturée sur toile",
-    size: "Petit format",
-    year: "2026",
-    price: "Sur commande",
-    note: "Deux oiseaux et un soleil en relief, une piece tendre et lumineuse.",
-  },
-  {
     title: "L'Astronaute aux Tournesols",
     category: "imaginaire",
     image: "CHAMASITE/oeuvre-15.jpeg",
@@ -168,3 +148,4 @@ const categoryLabel = {
   imaginaire: "Imaginaire",
   commande: "Commande personnalisee",
 };
+
