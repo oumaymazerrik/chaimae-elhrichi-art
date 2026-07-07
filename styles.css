@@ -2046,3 +2046,65 @@ html[data-theme="light"] .cart-toast {
     width: 100%;
   }
 }
+/* Client account v19 */
+.account-layout {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.account-card {
+  display: grid;
+  gap: 16px;
+  border: 1px solid var(--line);
+  padding: clamp(22px, 4vw, 34px);
+  background: rgba(241, 237, 228, 0.04);
+}
+
+.account-card h2 {
+  font-size: clamp(34px, 4.8vw, 62px);
+}
+
+.account-profile {
+  grid-column: 1 / -1;
+}
+
+.account-profile form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.account-profile textarea,
+.account-profile .form-actions {
+  grid-column: 1 / -1;
+}
+
+.account-message,
+.cart-account-hint {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cart-account-hint a {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.account-nav-link {
+  white-space: nowrap;
+}
+
+html[data-theme="light"] .account-card {
+  background: rgba(255, 248, 237, 0.68);
+}
+
+@media (max-width: 860px) {
+  .account-layout,
+  .account-profile form {
+    grid-template-columns: 1fr;
+  }
+}

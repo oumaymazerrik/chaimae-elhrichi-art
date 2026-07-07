@@ -2,6 +2,8 @@ const whatsappNumber = "212650732531";
 const emailAddress = "elhrichichaimae04@gmail.com";
 const storedArtworksKey = "chaimae-extra-artworks";
 const cartStorageKey = "chaimae-cart";
+const accountStorageKey = "chaimae-client-accounts";
+const accountSessionKey = "chaimae-client-session";
 
 function getStoredArtworks() {
   try {
@@ -22,6 +24,154 @@ function getAllArtworks() {
 
 
 
+
+function getAccounts() {
+  try {
+    return JSON.parse(localStorage.getItem(accountStorageKey) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveAccounts(accounts) {
+  localStorage.setItem(accountStorageKey, JSON.stringify(accounts));
+}
+
+function getCurrentAccount() {
+  const email = localStorage.getItem(accountSessionKey);
+  if (!email) return null;
+  return getAccounts().find((account) => account.email === email) || null;
+}
+
+function setCurrentAccount(email) {
+  if (email) localStorage.setItem(accountSessionKey, email);
+  else localStorage.removeItem(accountSessionKey);
+  updateAccountNav();
+}
+
+async function hashPassword(password) {
+  if (window.crypto?.subtle) {
+    const data = new TextEncoder().encode(password);
+    const hash = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(hash)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+  }
+  return btoa(unescape(encodeURIComponent(password)));
+}
+
+function updateAccountNav() {
+  const account = getCurrentAccount();
+  document.querySelectorAll("[data-account-link]").forEach((link) => {
+    link.textContent = account ? "Mon compte" : "Compte";
+  });
+}
+
+function accountSummary(account) {
+  if (!account) return [];
+  return [
+    "",
+    "Client connecte :",
+    `Nom: ${account.name || ""}`,
+    `Email: ${account.email || ""}`,
+    `Telephone: ${account.phone || ""}`,
+    `Instagram: ${account.instagram || ""}`,
+    `Adresse: ${account.address || ""}`,
+  ];
+}
+
+function showAccountPageState() {
+  const account = getCurrentAccount();
+  const profile = document.querySelector("#accountProfile");
+  const welcome = document.querySelector("#profileWelcome");
+  const profileForm = document.querySelector("#profileForm");
+  if (!profile || !profileForm) return;
+
+  profile.hidden = !account;
+  if (!account) return;
+
+  welcome.textContent = `Connecte(e) avec ${account.email}.`;
+  profileForm.elements.name.value = account.name || "";
+  profileForm.elements.phone.value = account.phone || "";
+  profileForm.elements.instagram.value = account.instagram || "";
+  profileForm.elements.address.value = account.address || "";
+}
+
+function setupAccount() {
+  updateAccountNav();
+  showAccountPageState();
+
+  const registerForm = document.querySelector("#registerForm");
+  const loginForm = document.querySelector("#loginForm");
+  const profileForm = document.querySelector("#profileForm");
+  const registerMessage = document.querySelector("#registerMessage");
+  const loginMessage = document.querySelector("#loginMessage");
+
+  registerForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(registerForm);
+    const email = String(data.get("email") || "").trim().toLowerCase();
+    const accounts = getAccounts();
+    if (accounts.some((account) => account.email === email)) {
+      registerMessage.textContent = "Un compte existe deja avec cet email.";
+      return;
+    }
+    const account = {
+      name: String(data.get("name") || "").trim(),
+      email,
+      phone: String(data.get("phone") || "").trim(),
+      instagram: "",
+      address: "",
+      passwordHash: await hashPassword(String(data.get("password") || "")),
+      createdAt: new Date().toISOString(),
+    };
+    saveAccounts([...accounts, account]);
+    setCurrentAccount(email);
+    registerForm.reset();
+    registerMessage.textContent = "Compte cree et connecte.";
+    showAccountPageState();
+    renderCartPage();
+  });
+
+  loginForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(loginForm);
+    const email = String(data.get("email") || "").trim().toLowerCase();
+    const passwordHash = await hashPassword(String(data.get("password") || ""));
+    const account = getAccounts().find((item) => item.email === email && item.passwordHash === passwordHash);
+    if (!account) {
+      loginMessage.textContent = "Email ou mot de passe incorrect.";
+      return;
+    }
+    setCurrentAccount(email);
+    loginForm.reset();
+    loginMessage.textContent = "Connexion reussie.";
+    showAccountPageState();
+    renderCartPage();
+  });
+
+  profileForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const current = getCurrentAccount();
+    if (!current) return;
+    const data = new FormData(profileForm);
+    const accounts = getAccounts().map((account) => account.email === current.email ? {
+      ...account,
+      name: String(data.get("name") || "").trim(),
+      phone: String(data.get("phone") || "").trim(),
+      instagram: String(data.get("instagram") || "").trim(),
+      address: String(data.get("address") || "").trim(),
+    } : account);
+    saveAccounts(accounts);
+    showCartNotice("Profil client enregistre.");
+    updateAccountNav();
+    renderCartPage();
+  });
+
+  document.querySelector("#logoutButton")?.addEventListener("click", () => {
+    setCurrentAccount(null);
+    showAccountPageState();
+    renderCartPage();
+  });
+}
 function getCartItems() {
   try {
     return JSON.parse(localStorage.getItem(cartStorageKey) || "[]");
@@ -71,9 +221,11 @@ function updateCartCount() {
 
 function cartMessage(items) {
   const lines = items.map((item, index) => `${index + 1}. ${item.title} - ${item.price} - ${item.size}`);
+  const customerLines = accountSummary(getCurrentAccount());
   return [
     "Bonjour Chaimae, je souhaite valider cette commande :",
     ...lines,
+    ...customerLines,
     "",
     "Merci de me confirmer la disponibilite, le prix final et le mode de paiement securise.",
   ].join("\n");
@@ -95,7 +247,13 @@ function renderCartPage() {
   const target = document.querySelector("#cartItems");
   const summary = document.querySelector("#cartSummaryText");
   const whatsapp = document.querySelector("#cartWhatsapp");
+  const accountHint = document.querySelector("#cartAccountHint");
   if (!target || !summary || !whatsapp) return;
+
+  const account = getCurrentAccount();
+  if (accountHint) {
+    accountHint.innerHTML = account ? `Commande associee au compte de <strong>${account.name || account.email}</strong>.` : `Vous pouvez <a href="compte.html">creer un compte</a> pour ajouter vos informations automatiquement.`;
+  }
 
   const items = getCartItems();
   if (!items.length) {
@@ -366,6 +524,7 @@ setupAboutRotator();
 setupGallery();
 setupForm();
 setupCart();
+setupAccount();
 observeReveals();
 function setupTheme() {
   const toggle = document.querySelector(".theme-toggle");

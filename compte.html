@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chaimae Elhrichi | Compte client</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260707-20" />
+  </head>
+  <body data-page="account">
+    <header class="site-header dark" data-reveal>
+      <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>ch.elhrichi_art</small></a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="galerie.html">Galerie</a>
+        <a href="apropos.html">A propos</a>
+        <a href="commander.html">Commander</a>
+        <a class="cart-nav-link" href="panier.html">Panier <span class="cart-count" data-cart-count>0</span></a>
+        <a class="account-nav-link active" href="compte.html" data-account-link>Compte</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+        <span class="theme-toggle-mark" aria-hidden="true"></span>
+        <span class="theme-toggle-text">Light</span>
+      </button>
+    </header>
+
+    <main class="page-main account-page">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Compte client</p>
+        <h1>Creer votre espace personnel</h1>
+        <p>
+          Gardez vos informations de contact pour commander plus vite. Sur cette version statique,
+          le compte est garde uniquement dans le navigateur utilise.
+        </p>
+      </section>
+
+      <section class="account-layout" data-reveal>
+        <form class="account-card" id="registerForm">
+          <p class="eyebrow">Nouveau client</p>
+          <h2>Creer un compte</h2>
+          <label>Nom complet<input name="name" type="text" autocomplete="name" required /></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Telephone<input name="phone" type="tel" autocomplete="tel" placeholder="Ex. +212 6..." /></label>
+          <label>Mot de passe<input name="password" type="password" autocomplete="new-password" minlength="6" required /></label>
+          <button class="button primary" type="submit">Creer mon compte</button>
+          <p class="account-message" id="registerMessage"></p>
+        </form>
+
+        <form class="account-card" id="loginForm">
+          <p class="eyebrow">Deja client</p>
+          <h2>Se connecter</h2>
+          <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+          <label>Mot de passe<input name="password" type="password" autocomplete="current-password" required /></label>
+          <button class="button ghost" type="submit">Connexion</button>
+          <p class="account-message" id="loginMessage"></p>
+        </form>
+
+        <section class="account-card account-profile" id="accountProfile" hidden>
+          <p class="eyebrow">Espace prive</p>
+          <h2>Mon profil</h2>
+          <p class="account-message" id="profileWelcome"></p>
+          <form id="profileForm">
+            <label>Nom complet<input name="name" type="text" autocomplete="name" /></label>
+            <label>Telephone<input name="phone" type="tel" autocomplete="tel" /></label>
+            <label>Instagram<input name="instagram" type="text" placeholder="@votre_compte" /></label>
+            <label>Adresse<textarea name="address" rows="4" placeholder="Ville, adresse ou indication de livraison"></textarea></label>
+            <div class="form-actions">
+              <button class="button primary" type="submit">Enregistrer</button>
+              <button class="button ghost" type="button" id="logoutButton">Se deconnecter</button>
+            </div>
+          </form>
+          <p class="payment-note">Compte local de demonstration : pour un vrai espace client securise multi-appareils, il faudra connecter une base de donnees.</p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Votre compte aide Chaimae a traiter la commande plus vite.</p>
+      <a href="panier.html">Voir le panier</a>
+    </footer>
+
+    <script src="data.js?v=20260707-16"></script>
+    <script src="script.js?v=20260707-20"></script>
+  </body>
+</html>
