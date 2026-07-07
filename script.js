@@ -4,6 +4,7 @@ const storedArtworksKey = "chaimae-extra-artworks";
 const cartStorageKey = "chaimae-cart";
 const accountStorageKey = "chaimae-client-accounts";
 const accountSessionKey = "chaimae-client-session";
+const favoritesStorageKey = "chaimae-favorites";
 
 function getStoredArtworks() {
   try {
@@ -25,6 +26,125 @@ function getAllArtworks() {
 
 
 
+
+function getFavoriteIds() {
+  try {
+    return JSON.parse(localStorage.getItem(favoritesStorageKey) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveFavoriteIds(ids) {
+  localStorage.setItem(favoritesStorageKey, JSON.stringify(ids));
+  updateFavoriteCount();
+}
+
+function isFavorite(art) {
+  return getFavoriteIds().includes(artworkId(art));
+}
+
+function toggleFavorite(art) {
+  const id = artworkId(art);
+  const ids = getFavoriteIds();
+  const next = ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id];
+  saveFavoriteIds(next);
+  showCartNotice(ids.includes(id) ? `${art.title} est retire des favoris.` : `${art.title} est ajoute aux favoris.`);
+  renderFavoritesPage();
+}
+
+function updateFavoriteCount() {
+  const count = getFavoriteIds().length;
+  document.querySelectorAll("[data-favorite-count]").forEach((target) => {
+    target.textContent = String(count);
+  });
+}
+
+function renderFavoritesPage() {
+  const target = document.querySelector("#favoriteGrid");
+  if (!target) return;
+  const ids = getFavoriteIds();
+  const favorites = getAllArtworks().filter((art) => ids.includes(artworkId(art)));
+  if (!favorites.length) {
+    target.innerHTML = `<div class="empty-cart"><p>Aucun favori pour le moment.</p><a class="button primary" href="galerie.html">Voir la galerie</a></div>`;
+    return;
+  }
+  target.innerHTML = favorites.map((art) => `
+    <button class="art-card" type="button" data-favorite-open="${artworkId(art)}" data-reveal>
+      <span class="art-frame"><img src="${art.image}" alt="${art.title}" loading="lazy" /><span class="art-badge">${art.price}</span></span>
+      <span class="art-meta"><span><span class="art-title">${art.title}</span><span class="art-category">${art.category}</span></span><span class="art-price">Voir</span></span>
+    </button>
+  `).join("");
+  observeReveals();
+}
+
+function setupFavoritesPage() {
+  const grid = document.querySelector("#favoriteGrid");
+  if (!grid) return;
+  grid.addEventListener("click", (event) => {
+    const card = event.target.closest("[data-favorite-open]");
+    if (!card) return;
+    const art = getAllArtworks().find((item) => artworkId(item) === card.dataset.favoriteOpen);
+    if (art) openLightbox(art);
+  });
+  renderFavoritesPage();
+}
+
+function openSearchPanel() {
+  let panel = document.querySelector("#searchPanel");
+  if (!panel) {
+    panel = document.createElement("dialog");
+    panel.id = "searchPanel";
+    panel.className = "search-panel";
+    panel.innerHTML = `
+      <button class="close-lightbox" type="button" data-search-close aria-label="Fermer">&times;</button>
+      <div class="search-box">
+        <p class="eyebrow">Recherche</p>
+        <input id="searchInput" type="search" placeholder="Titre, categorie, technique..." autocomplete="off" />
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    `;
+    document.body.appendChild(panel);
+    panel.querySelector("[data-search-close]").addEventListener("click", () => panel.close());
+    panel.addEventListener("click", (event) => {
+      if (event.target === panel) panel.close();
+    });
+    panel.querySelector("#searchInput").addEventListener("input", renderSearchResults);
+    panel.querySelector("#searchResults").addEventListener("click", (event) => {
+      const link = event.target.closest("[data-search-art]");
+      if (!link) return;
+      const art = getAllArtworks().find((item) => artworkId(item) === link.dataset.searchArt);
+      if (art) {
+        panel.close();
+        openLightbox(art);
+      }
+    });
+  }
+  if (typeof panel.showModal === "function") panel.showModal();
+  renderSearchResults();
+  window.setTimeout(() => panel.querySelector("#searchInput")?.focus(), 80);
+}
+
+function renderSearchResults() {
+  const input = document.querySelector("#searchInput");
+  const target = document.querySelector("#searchResults");
+  if (!input || !target) return;
+  const query = input.value.trim().toLowerCase();
+  const results = getAllArtworks().filter((art) => [art.title, art.category, art.technique, art.note].join(" ").toLowerCase().includes(query)).slice(0, 8);
+  target.innerHTML = results.map((art) => `
+    <button type="button" class="search-result" data-search-art="${artworkId(art)}">
+      <img src="${art.image}" alt="${art.title}" />
+      <span><strong>${art.title}</strong><small>${art.price}</small></span>
+    </button>
+  `).join("") || `<p class="cart-summary-text">Aucun resultat.</p>`;
+}
+
+function setupHeaderActions() {
+  updateFavoriteCount();
+  document.querySelectorAll("[data-search-open]").forEach((button) => {
+    button.addEventListener("click", openSearchPanel);
+  });
+}
 function getAccounts() {
   try {
     return JSON.parse(localStorage.getItem(accountStorageKey) || "[]");
@@ -61,7 +181,10 @@ async function hashPassword(password) {
 function updateAccountNav() {
   const account = getCurrentAccount();
   document.querySelectorAll("[data-account-link]").forEach((link) => {
-    link.textContent = account ? "Mon compte" : "Compte";
+    const label = account ? "Mon compte" : "Compte client";
+    link.setAttribute("aria-label", label);
+    link.setAttribute("title", label);
+    if (!link.classList.contains("icon-action")) link.textContent = account ? "Mon compte" : "Compte";
   });
 }
 
@@ -391,6 +514,14 @@ function openLightbox(art) {
   document.querySelector("#lightboxPrice").textContent = art.price;
   const addCartButton = document.querySelector("#lightboxAddCart");
   if (addCartButton) addCartButton.onclick = () => addToCart(art);
+  const favoriteButton = document.querySelector("#lightboxFavorite");
+  if (favoriteButton) {
+    favoriteButton.textContent = isFavorite(art) ? "Retirer des favoris" : "Ajouter aux favoris";
+    favoriteButton.onclick = () => {
+      toggleFavorite(art);
+      favoriteButton.textContent = isFavorite(art) ? "Retirer des favoris" : "Ajouter aux favoris";
+    };
+  }
   document.querySelector("#lightboxWhatsapp").href = whatsappUrl(
     `Bonjour Chaimae, je suis interesse(e) par l'oeuvre "${art.title}".`
   );
@@ -525,6 +656,8 @@ setupGallery();
 setupForm();
 setupCart();
 setupAccount();
+setupHeaderActions();
+setupFavoritesPage();
 observeReveals();
 function setupTheme() {
   const toggle = document.querySelector(".theme-toggle");

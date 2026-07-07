@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Chaimae Elhrichi | Contact</title>
+    <title>Chaimae Elhrichi | Favoris</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=20260707-22" />
   </head>
-  <body data-page="contact">
+  <body data-page="favorites">
     <header class="site-header dark" data-reveal>
       <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>ch.elhrichi_art</small></a>
       <nav aria-label="Navigation principale">
@@ -17,7 +17,7 @@
         <a href="galerie.html">Galerie</a>
         <a href="apropos.html">A propos</a>
         <a href="commander.html">Commander</a>
-        <a class="active" href="contact.html">Contact</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions" aria-label="Actions rapides">
         <button class="icon-action" type="button" data-search-open aria-label="Rechercher une oeuvre">
@@ -26,7 +26,7 @@
         <a class="icon-action account-icon" href="compte.html" data-account-link aria-label="Compte client">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M4 21c1.6-4.2 4.2-6 8-6s6.4 1.8 8 6"></path></svg>
         </a>
-        <a class="icon-action" href="favoris.html" aria-label="Favoris">
+        <a class="icon-action active" href="favoris.html" aria-label="Favoris">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path></svg>
           <span class="action-count" data-favorite-count>0</span>
         </a>
@@ -34,64 +34,30 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l1 13H5L6 8Z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
           <span class="action-count" data-cart-count>0</span>
         </a>
-      </div>      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
+      </div>
+      <button class="theme-toggle" type="button" aria-label="Activer le mode clair" aria-pressed="false">
         <span class="theme-toggle-mark" aria-hidden="true"></span>
         <span class="theme-toggle-text">Light</span>
       </button>
     </header>
 
-    <main class="page-main contact-page">
-      <section class="contact-hero" data-reveal>
-        <p class="eyebrow">Contact</p>
-        <h1>Suivre, discuter, commander.</h1>
-        <p>
-          Pour une oeuvre disponible, une commande personnalisee ou une collaboration,
-          le plus direct est de contacter Chaimae sur Instagram.
-        </p>
+    <main class="page-main">
+      <section class="page-intro" data-reveal>
+        <p class="eyebrow">Favoris</p>
+        <h1>Vos tableaux preferes</h1>
+        <p>Retrouvez les oeuvres que vous avez marquees avec l'etoile pendant votre visite.</p>
       </section>
-
-      <section class="contact-grid">
-        <a class="contact-card" href="https://www.instagram.com/ch.elhrichi_art/" target="_blank" rel="noreferrer" data-reveal>
-          <span>Instagram</span>
-          <strong>@ch.elhrichi_art</strong>
-        </a>
-        <a class="contact-card" href="https://wa.me/212650732531" target="_blank" rel="noreferrer" data-reveal>
-          <span>WhatsApp</span>
-          <strong>Discuter avec Chaimae</strong>
-        </a>
-        <a class="contact-card" href="https://mail.google.com/mail/?view=cm&fs=1&to=elhrichichaimae04%40gmail.com&su=Demande%20de%20renseignement%20-%20Chaimae%20Elhrichi&body=Bonjour%20Chaimae%2C%0D%0A%0D%0AJe%20souhaite%20vous%20contacter%20au%20sujet%20de%20vos%20tableaux.%0D%0A%0D%0ANom%20%3A%20%0D%0AContact%20%3A%20%0D%0AMessage%20%3A%20%0D%0A" target="_blank" data-reveal>
-          <span>Email</span>
-          <strong>elhrichichaimae04@gmail.com</strong>
-        </a>
+      <section class="gallery-section">
+        <div class="art-grid" id="favoriteGrid" aria-live="polite"></div>
       </section>
     </main>
 
     <footer class="footer">
-      <p>Chaimae Elhrichi | Artiste peintre</p>
-      <a href="commander.html">Commander un tableau</a>
+      <p>Votre selection personnelle.</p>
+      <a href="galerie.html">Retour a la galerie</a>
     </footer>
 
+    <script src="data.js?v=20260707-16"></script>
     <script src="script.js?v=20260707-22"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
