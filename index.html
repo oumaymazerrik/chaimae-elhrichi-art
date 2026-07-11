@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260708-01" />
+    <link rel="stylesheet" href="styles.css?v=20260711-01" />
   </head>
   <body data-page="home">
     <header class="site-header" data-reveal>
@@ -83,25 +83,18 @@
           <h2>La transformation par l'art.</h2>
           <p>Un tableau ne remplit pas seulement un mur : il change la lumiere, l'equilibre et la presence d'une piece.</p>
         </div>
-        <div class="transformation-compare" data-transform-slider style="--split: 50%;">
-          <div class="transform-scene transform-before" aria-hidden="true">
+        <div class="transformation-compare photo-transformation" data-transform-slider style="--split: 50%;">
+          <div class="compare-photo compare-before" aria-hidden="true">
             <span class="compare-label before-label">Avant</span>
-            <div class="room-wall empty-wall"></div>
-            <div class="room-sofa"><span></span></div>
-            <div class="room-chair"></div>
-            <div class="room-table"></div>
-            <div class="room-vase"></div>
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=82" alt="Salon avant transformation" />
           </div>
-          <div class="transform-scene transform-after" aria-hidden="true">
+          <div class="compare-photo compare-after" aria-hidden="true">
             <span class="compare-label after-label">Apres</span>
-            <div class="room-wall art-wall">
-              <img src="CHAMASITE/oeuvre-10.jpeg" alt="Tableau de Chaimae Elhrichi dans un salon" />
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=82" alt="Salon apres transformation avec une oeuvre de Chaimae" />
+            <div class="real-art-frame">
+              <img src="CHAMASITE/oeuvre-10.jpeg" alt="Oeuvre de Chaimae Elhrichi dans un salon" />
             </div>
-            <div class="room-sofa"><span></span></div>
-            <div class="room-chair"></div>
-            <div class="room-table"></div>
-            <div class="room-vase"></div>
-            <div class="room-lamp"></div>
+            <div class="after-warmth"></div>
           </div>
           <div class="compare-divider" aria-hidden="true"><span>&lsaquo;&rsaquo;</span></div>
           <input class="compare-range" type="range" min="12" max="88" value="50" aria-label="Comparer avant et apres" />
@@ -159,7 +152,7 @@
     </footer>
 
     <script src="data.js?v=20260707-16"></script>
-    <script src="script.js?v=20260708-01"></script>
+    <script src="script.js?v=20260711-01"></script>
   </body>
 </html>
 
