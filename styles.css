@@ -2717,3 +2717,34 @@ html[data-theme="light"] .photo-transformation .compare-label {
     padding: 6px;
   }
 }
+/* Exact salon images v25 */
+.exact-transformation {
+  aspect-ratio: 4 / 5.35;
+  width: min(760px, 100%);
+  min-height: 520px;
+  background: #d8d8d2;
+}
+
+.exact-transformation .compare-photo > img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.exact-transformation .compare-before::after,
+.exact-transformation .after-warmth,
+.exact-transformation .real-art-frame {
+  display: none;
+}
+
+@media (min-width: 980px) {
+  .exact-transformation {
+    width: min(820px, 100%);
+  }
+}
+
+@media (max-width: 760px) {
+  .exact-transformation {
+    width: 100%;
+    min-height: 470px;
+  }
+}
