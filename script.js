@@ -658,7 +658,18 @@ setupCart();
 setupAccount();
 setupHeaderActions();
 setupFavoritesPage();
+setupTransformationSlider();
 observeReveals();
+
+function setupTransformationSlider() {
+  document.querySelectorAll("[data-transform-slider]").forEach((slider) => {
+    const range = slider.querySelector(".compare-range");
+    if (!range) return;
+    const update = () => slider.style.setProperty("--split", `${range.value}%`);
+    range.addEventListener("input", update);
+    update();
+  });
+}
 function setupTheme() {
   const toggle = document.querySelector(".theme-toggle");
   const root = document.documentElement;

@@ -2326,3 +2326,292 @@ html[data-theme="light"] .icon-action.active {
     height: 30px;
   }
 }
+/* Transformation slider v23 */
+.transformation-section {
+  background:
+    linear-gradient(135deg, rgba(202, 168, 102, 0.08), transparent 36%),
+    linear-gradient(225deg, rgba(78, 102, 88, 0.1), transparent 42%),
+    var(--charcoal);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.transformation-heading {
+  text-align: center;
+}
+
+.transformation-heading p:not(.eyebrow) {
+  width: min(680px, 100%);
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+.transformation-compare {
+  --split: 50%;
+  position: relative;
+  width: min(980px, 100%);
+  aspect-ratio: 16 / 8;
+  min-height: 360px;
+  margin: 34px auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(202, 168, 102, 0.28);
+  background: #c7bbb0;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+  isolation: isolate;
+}
+
+.transform-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    linear-gradient(#d2cdc4 0 58%, #ad9780 58% 61%, #7b6146 61% 100%);
+}
+
+.transform-before {
+  filter: saturate(0.66) contrast(0.9);
+}
+
+.transform-after {
+  clip-path: inset(0 0 0 var(--split));
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255, 236, 190, 0.5), transparent 18%),
+    linear-gradient(#cfc5b8 0 58%, #b69063 58% 61%, #6d4f34 61% 100%);
+}
+
+.room-wall {
+  position: absolute;
+  left: 34%;
+  top: 10%;
+  width: 34%;
+  height: 28%;
+  border: 10px solid rgba(99, 66, 42, 0.35);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+}
+
+.empty-wall {
+  border-style: dashed;
+  opacity: 0.38;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.art-wall {
+  border-color: rgba(112, 69, 40, 0.82);
+  background: #1b1612;
+}
+
+.art-wall img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.15) contrast(1.03);
+}
+
+.room-sofa {
+  position: absolute;
+  left: 30%;
+  bottom: 18%;
+  width: 38%;
+  height: 18%;
+  border-radius: 16px 16px 5px 5px;
+  background: linear-gradient(135deg, #d0b897, #9a7756);
+  box-shadow: inset 0 -18px 0 rgba(72, 45, 30, 0.16), 0 16px 26px rgba(0, 0, 0, 0.18);
+}
+
+.room-sofa::before,
+.room-sofa::after,
+.room-sofa span {
+  content: "";
+  position: absolute;
+  bottom: 48%;
+  width: 17%;
+  height: 34%;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #f0dcae, #aa7d42);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.room-sofa::before { left: 22%; }
+.room-sofa::after { right: 22%; }
+.room-sofa span { left: 43%; background: linear-gradient(135deg, #fff2ca, #c29a52); }
+
+.room-chair {
+  position: absolute;
+  left: 7%;
+  bottom: 14%;
+  width: 20%;
+  height: 26%;
+  border-radius: 10px 10px 4px 4px;
+  transform: skewY(-4deg);
+  background: linear-gradient(130deg, #caa866, #785232);
+  box-shadow: inset -18px -18px 0 rgba(255, 255, 255, 0.08), 0 16px 24px rgba(0, 0, 0, 0.16);
+}
+
+.room-table {
+  position: absolute;
+  left: 38%;
+  bottom: 6%;
+  width: 26%;
+  height: 10%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #d7ad67, #795134 72%);
+  box-shadow: 0 16px 22px rgba(0, 0, 0, 0.24);
+}
+
+.room-vase {
+  position: absolute;
+  left: 15%;
+  bottom: 44%;
+  width: 3.5%;
+  height: 13%;
+  border-radius: 50% 50% 42% 42%;
+  background: linear-gradient(90deg, #7a4f2f, #d2a158, #6f4628);
+}
+
+.room-vase::before {
+  content: "";
+  position: absolute;
+  left: -170%;
+  bottom: 76%;
+  width: 440%;
+  height: 80%;
+  background:
+    radial-gradient(circle at 15% 62%, #f3ead5 0 8%, transparent 9%),
+    radial-gradient(circle at 45% 22%, #f9f2df 0 9%, transparent 10%),
+    radial-gradient(circle at 72% 54%, #e9dcc6 0 8%, transparent 9%),
+    linear-gradient(70deg, transparent 47%, #65735c 48% 52%, transparent 53%);
+}
+
+.room-lamp {
+  position: absolute;
+  right: 15%;
+  bottom: 28%;
+  width: 7%;
+  height: 25%;
+}
+
+.room-lamp::before {
+  content: "";
+  position: absolute;
+  left: 46%;
+  bottom: 0;
+  width: 8%;
+  height: 56%;
+  background: #806343;
+}
+
+.room-lamp::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 38%;
+  border-radius: 3px;
+  background: radial-gradient(circle at center, #fff3cb, #d6b77d);
+  box-shadow: 0 0 34px rgba(255, 222, 148, 0.58);
+}
+
+.compare-label {
+  position: absolute;
+  z-index: 5;
+  top: 28px;
+  padding: 8px 16px;
+  background: rgba(17, 16, 14, 0.82);
+  color: #fff8ed;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.before-label { left: 28px; }
+.after-label { right: 28px; }
+
+.compare-divider {
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  bottom: 0;
+  left: var(--split);
+  width: 2px;
+  transform: translateX(-1px);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.compare-divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255, 248, 237, 0.96);
+  color: #1d1812;
+  font-size: 24px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.compare-range {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+html[data-theme="light"] .transformation-section {
+  background: #fff8ed;
+}
+
+html[data-theme="light"] .transformation-compare {
+  box-shadow: 0 24px 58px rgba(96, 71, 44, 0.16);
+}
+
+@media (max-width: 760px) {
+  .transformation-heading {
+    text-align: left;
+  }
+
+  .transformation-compare {
+    aspect-ratio: 4 / 5;
+    min-height: 440px;
+  }
+
+  .room-wall {
+    left: 21%;
+    top: 11%;
+    width: 58%;
+    height: 24%;
+  }
+
+  .room-sofa {
+    left: 16%;
+    width: 68%;
+    bottom: 20%;
+  }
+
+  .room-chair {
+    left: 4%;
+    width: 27%;
+    height: 22%;
+  }
+
+  .room-lamp {
+    right: 8%;
+    bottom: 34%;
+    width: 12%;
+  }
+
+  .compare-label {
+    top: 16px;
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .before-label { left: 16px; }
+  .after-label { right: 16px; }
+}
