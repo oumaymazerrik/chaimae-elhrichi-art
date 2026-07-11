@@ -49,7 +49,7 @@ function toggleFavorite(art) {
   const ids = getFavoriteIds();
   const next = ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id];
   saveFavoriteIds(next);
-  showCartNotice(ids.includes(id) ? `${art.title} est retire des favoris.` : `${art.title} est ajoute aux favoris.`);
+  showCartNotice(ids.includes(id) ? `${art.title} est retire de la wishlist.` : `${art.title} est ajoute a la wishlist.`);
   renderFavoritesPage();
 }
 
@@ -66,7 +66,7 @@ function renderFavoritesPage() {
   const ids = getFavoriteIds();
   const favorites = getAllArtworks().filter((art) => ids.includes(artworkId(art)));
   if (!favorites.length) {
-    target.innerHTML = `<div class="empty-cart"><p>Aucun favori pour le moment.</p><a class="button primary" href="galerie.html">Voir la galerie</a></div>`;
+    target.innerHTML = `<div class="empty-cart"><p>Votre wishlist est vide pour le moment.</p><a class="button primary" href="galerie.html">Voir la galerie</a></div>`;
     return;
   }
   target.innerHTML = favorites.map((art) => `
@@ -516,10 +516,10 @@ function openLightbox(art) {
   if (addCartButton) addCartButton.onclick = () => addToCart(art);
   const favoriteButton = document.querySelector("#lightboxFavorite");
   if (favoriteButton) {
-    favoriteButton.textContent = isFavorite(art) ? "Retirer des favoris" : "Ajouter aux favoris";
+    favoriteButton.textContent = isFavorite(art) ? "Retirer de la wishlist" : "Ajouter a la wishlist";
     favoriteButton.onclick = () => {
       toggleFavorite(art);
-      favoriteButton.textContent = isFavorite(art) ? "Retirer des favoris" : "Ajouter aux favoris";
+      favoriteButton.textContent = isFavorite(art) ? "Retirer de la wishlist" : "Ajouter a la wishlist";
     };
   }
   document.querySelector("#lightboxWhatsapp").href = whatsappUrl(
