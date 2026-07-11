@@ -2748,3 +2748,28 @@ html[data-theme="light"] .photo-transformation .compare-label {
     min-height: 470px;
   }
 }
+
+/* Smaller salon comparison v26 */
+.transformation-section {
+  padding-top: clamp(52px, 6vw, 82px);
+  padding-bottom: clamp(52px, 6vw, 82px);
+}
+
+.exact-transformation {
+  width: min(540px, 100%);
+  min-height: 0;
+  margin-inline: auto;
+}
+
+@media (min-width: 980px) {
+  .exact-transformation {
+    width: min(580px, 100%);
+  }
+}
+
+@media (max-width: 760px) {
+  .exact-transformation {
+    width: min(330px, 100%);
+    min-height: 0;
+  }
+}
