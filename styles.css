@@ -284,6 +284,43 @@ h2 {
   object-fit: cover;
 }
 
+.artist-video-frame {
+  position: relative;
+  width: min(520px, 100%);
+  justify-self: center;
+  border: 1px solid rgba(202, 168, 102, 0.34);
+  padding: 10px;
+  background:
+    linear-gradient(135deg, rgba(202, 168, 102, 0.18), transparent 42%),
+    rgba(17, 16, 14, 0.64);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.32);
+}
+
+.artist-video-frame::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  z-index: -1;
+  border: 1px solid rgba(202, 168, 102, 0.14);
+  transform: rotate(-1.6deg);
+}
+
+.artist-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 680px;
+  object-fit: cover;
+  background: #11100e;
+}
+
+html[data-theme="light"] .artist-video-frame {
+  background:
+    linear-gradient(135deg, rgba(159, 115, 49, 0.16), transparent 44%),
+    rgba(255, 248, 237, 0.74);
+  box-shadow: 0 26px 60px rgba(96, 71, 44, 0.16);
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
