@@ -144,6 +144,25 @@ function setupHeaderActions() {
   document.querySelectorAll("[data-search-open]").forEach((button) => {
     button.addEventListener("click", openSearchPanel);
   });
+  const menuToggle = document.querySelector("[data-action-menu-toggle]");
+  const actionMenu = document.querySelector(".header-actions");
+  if (menuToggle && actionMenu) {
+    const setOpen = (isOpen) => {
+      document.body.classList.toggle("action-menu-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    };
+    menuToggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setOpen(!document.body.classList.contains("action-menu-open"));
+    });
+    actionMenu.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+    document.addEventListener("click", () => setOpen(false));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+  }
 }
 function getAccounts() {
   try {

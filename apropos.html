@@ -7,10 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260711-04" />
+    <link rel="stylesheet" href="styles.css?v=20260712-01" />
   </head>
   <body data-page="about">
     <header class="site-header dark" data-reveal>
+      <button class="action-menu-toggle" type="button" data-action-menu-toggle aria-label="Ouvrir le menu client" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <a class="brand" href="index.html"><span>Chaimae Elhrichi</span><small>ch.elhrichi_art</small></a>
       <nav aria-label="Navigation principale">
         <a href="index.html">Accueil</a>
@@ -20,17 +23,17 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions" aria-label="Actions rapides">
-        <button class="icon-action" type="button" data-search-open aria-label="Rechercher une oeuvre">
+        <button class="icon-action" type="button" data-search-open aria-label="Rechercher une oeuvre" data-menu-label="Recherche">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4.5 4.5"></path></svg>
         </button>
-        <a class="icon-action account-icon" href="compte.html" data-account-link aria-label="Compte client">
+        <a class="icon-action account-icon" href="compte.html" data-account-link aria-label="Compte client" data-menu-label="Compte">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"></circle><path d="M4 21c1.6-4.2 4.2-6 8-6s6.4 1.8 8 6"></path></svg>
         </a>
-        <a class="icon-action" href="favoris.html" aria-label="Wishlist">
+        <a class="icon-action" href="favoris.html" aria-label="Wishlist" data-menu-label="Wishlist">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path></svg>
           <span class="action-count" data-favorite-count>0</span>
         </a>
-        <a class="icon-action" href="panier.html" aria-label="Panier">
+        <a class="icon-action" href="panier.html" aria-label="Panier" data-menu-label="Panier">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l1 13H5L6 8Z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg>
           <span class="action-count" data-cart-count>0</span>
         </a>
@@ -74,6 +77,6 @@
     </footer>
 
     <script src="data.js?v=20260707-16"></script>
-    <script src="script.js?v=20260711-04"></script>
+    <script src="script.js?v=20260712-01"></script>
   </body>
 </html>
