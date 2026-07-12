@@ -2892,3 +2892,13 @@ html[data-theme="light"] .action-menu-toggle {
     height: auto;
   }
 }
+
+/* Simple account page v28 */
+.account-layout-simple {
+  grid-template-columns: minmax(0, 520px);
+  justify-content: center;
+}
+
+.account-register-bottom {
+  margin-top: clamp(10px, 2vw, 18px);
+}
