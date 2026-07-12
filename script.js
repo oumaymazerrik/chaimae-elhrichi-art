@@ -222,9 +222,11 @@ function accountSummary(account) {
 
 function showAccountPageState() {
   const account = getCurrentAccount();
+  const registerForm = document.querySelector("#registerForm");
   const profile = document.querySelector("#accountProfile");
   const welcome = document.querySelector("#profileWelcome");
   const profileForm = document.querySelector("#profileForm");
+  if (registerForm) registerForm.hidden = !!account;
   if (!profile || !profileForm) return;
 
   profile.hidden = !account;
