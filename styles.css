@@ -312,6 +312,8 @@ h2 {
   max-height: 680px;
   object-fit: cover;
   background: #11100e;
+  pointer-events: none;
+  user-select: none;
 }
 
 html[data-theme="light"] .artist-video-frame {

@@ -164,6 +164,16 @@ function setupHeaderActions() {
     });
   }
 }
+
+function setupFixedArtistVideo() {
+  document.querySelectorAll(".artist-video").forEach((video) => {
+    video.addEventListener("contextmenu", (event) => event.preventDefault());
+    video.addEventListener("pause", () => {
+      if (document.visibilityState === "visible") video.play().catch(() => {});
+    });
+    video.play?.().catch(() => {});
+  });
+}
 function getAccounts() {
   try {
     return JSON.parse(localStorage.getItem(accountStorageKey) || "[]");
@@ -678,6 +688,7 @@ setupForm();
 setupCart();
 setupAccount();
 setupHeaderActions();
+setupFixedArtistVideo();
 setupFavoritesPage();
 setupTransformationSlider();
 observeReveals();
